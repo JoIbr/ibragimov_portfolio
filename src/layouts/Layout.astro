@@ -1,0 +1,106 @@
+---
+import "../styles/layout.css";
+
+interface Props {
+	titleRu?: string;
+	titleEn?: string;
+	showBack?: boolean;
+}
+
+const { titleRu = "Портфолио", titleEn = "Portfolio", showBack = false } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const tabs = [
+	{ href: "/", ru: "Кейсы", en: "Cases" },
+	{ href: "/about", ru: "Обо мне", en: "About" },
+	{ href: "/contact", ru: "Контакты", en: "Contacts" },
+];
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{titleRu}</title>
+	</head>
+	<body data-title-ru={titleRu} data-title-en={titleEn}>
+		<aside class="sidebar">
+			<div class="sidebar-content">
+				<h1>Ibragimov Javohir</h1>
+				<div class="sidebar-content-item">
+					<p class="subtitle" data-i18n-ru="Выполненные продуктовые кейсы" data-i18n-en="Completed product cases">
+						Выполненные продуктовые кейсы
+					</p>
+					<p class="subtitle-since">since 2023-2026</p>
+				</div>
+			</div>
+			<a class="contact-link" href="/contact" data-i18n-ru="Связаться со мной →" data-i18n-en="Contact me →">
+				Связаться со мной →
+			</a>
+		</aside>
+
+		<div class="content-shell">
+			<header class="tabs">
+				{showBack ? (
+					<a href="/" class="back-btn">
+      					← <span data-i18n-ru="Назад" data-i18n-en="Back">Назад</span>
+    				</a>
+				) : (
+					<a 
+					
+					class={`tab ${pathname === "/" ? "active" : ""}`}
+					href = "/"
+					data-i18n-ru = "Кейсы"
+					data-i18n-en = "Cases">	
+					</a>
+				)}
+				{tabs.slice(1).map((tab) => (
+					<a
+						class={`tab ${pathname === tab.href ? "active" : ""}`}
+						href={tab.href}
+						data-i18n-ru={tab.ru}
+						data-i18n-en={tab.en}
+					>
+						{tab.ru}
+					</a>
+				))}
+				<button id="lang-toggle" class="lang" type="button">РУС</button>
+			</header>
+			<main>
+				<slot />
+			</main>
+		</div>
+		<script is:inline>
+			const LANG_KEY = "site-lang";
+
+			function applyLanguage(lang) {
+				const safeLang = lang === "en" ? "en" : "ru";
+				document.documentElement.lang = safeLang;
+				localStorage.setItem(LANG_KEY, safeLang);
+
+				const title = document.body.dataset[`title${safeLang === "ru" ? "Ru" : "En"}`];
+				if (title) document.title = title;
+
+				document.querySelectorAll("[data-i18n-ru][data-i18n-en]").forEach((el) => {
+					el.textContent = safeLang === "ru" ? el.dataset.i18nRu : el.dataset.i18nEn;
+				});
+
+				const toggle = document.getElementById("lang-toggle");
+				if (toggle) toggle.textContent = safeLang === "ru" ? "РУС" : "ENG";
+			}
+
+			const initialLang = localStorage.getItem(LANG_KEY) || "ru";
+			applyLanguage(initialLang);
+
+			const toggle = document.getElementById("lang-toggle");
+			toggle?.addEventListener("click", () => {
+				const next = (localStorage.getItem(LANG_KEY) || "ru") === "ru" ? "en" : "ru";
+				applyLanguage(next);
+			});
+		</script>
+	</body>
+</html>

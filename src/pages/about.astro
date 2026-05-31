@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/page-section.css";
+---
+
+<Layout titleRu="Обо мне | Portfolio" titleEn="About | Portfolio">
+	<section class="section">
+		<div class="about-me">
+			<div class="my-photo"></div>
+			<p
+			data-i18n-ru="Всем привет! Меня зовут Жавохир Ибрагимов. Я являюсь UI/UX дизайнером компании TVCOM в Ташкенте. Ранее работал со стартапами и цифровыми компаниями. Полностью вовлечен в сферу дизайна, а также очень интересуюсь веб-программированием. Люблю создавать проекты с нуля."
+			data-i18n-en="Hello, everyone! My name is Javohir Ibragimov. I’m a UI/UX designer at TVCOM in Tashkent. Previously, I worked with startups and digital companies. I’m fully immersed in the world of design, and I’m also very interested in web development. I love building projects from scratch."
+			class="about-text"
+			>
+			</p>
+		</div>
+		<table class="info-table">
+			<tbody>
+			  <tr>
+				<td class="label" data-i18n-ru="Текущая компания" data-i18n-en="Current company"></td>
+				<td class="value">
+				  <img src="/logos/tvcom.svg" alt="TVCOM" class="company-logo" />
+				</td>
+			  </tr>
+			  <tr>
+				<td class="label" data-i18n-ru="Опыт работы" data-i18n-en="Work experience"></td>
+				<td class="value" data-i18n-ru="3 года" data-i18n-en="3 years"></td>
+			  </tr>
+			  <tr>
+				<td class="label" data-i18n-ru="Образование" data-i18n-en="Education"></td>
+				<td class="value" data-i18n-ru="Инженер-системотехник" data-i18n-en="Systems Engineer"></td>
+			  </tr>
+			  <tr>
+				<td class="label" data-i18n-ru="Текущее местоположение" data-i18n-en="Current location"></td>
+				<td class="value" data-i18n-ru="Ташкент, Узбекистан" data-i18n-en="Tashkent, Uzbekistan"></td>
+			  </tr>
+			  <tr>
+				<td class="label" data-i18n-ru="Email" data-i18n-en="Email"></td>
+				<td class="value">
+				  <a href="mailto:javohirbr@gmail.com">javohirbr@gmail.com</a>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+	</section>
+</Layout>

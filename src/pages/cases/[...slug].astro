@@ -1,0 +1,64 @@
+---
+import { getCollection, type CollectionEntry, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/case.css"
+
+export async function getStaticPaths() {
+  const cases = await getCollection("cases");
+  console.log(cases.map((e) => e.id));
+  return cases.map((entry) => ({
+    params: { slug: entry.id.replace(/\.mdx$/, "") },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"cases">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<Layout titleRu={d.titleRu} titleEn={d.titleEn} showBack={true}>
+  <div class="case-page">
+    <div class="case-cover">
+      <img src={d.cover} alt={d.titleRu} />
+    </div>
+
+    <h2 class="case-title">{d.titleRu}</h2>
+
+    <table class="info-table">
+      <tbody>
+        <tr>
+          <td class="label" data-i18n-ru="Клиент" data-i18n-en="Client"></td>
+          <td class="value" data-i18n-ru={d.clientRu} data-i18n-en={d.clientEn}>{d.clientRu}</td>
+        </tr>
+        <tr>
+          <td class="label" data-i18n-ru="Когда было сделано" data-i18n-en="Duration"></td>
+          <td class="value" data-i18n-ru={d.durationRu} data-i18n-en={d.durationEn}>{d.durationRu}</td>
+        </tr>
+        <tr>
+          <td class="label" data-i18n-ru="Цель" data-i18n-en="Goal"></td>
+          <td class="value" data-i18n-ru={d.goalRu} data-i18n-en={d.goalEn}>{d.goalRu}</td>
+        </tr>
+        <tr>
+          <td class="label" data-i18n-ru="Результат" data-i18n-en="Result"></td>
+          <td class="value" data-i18n-ru={d.resultRu} data-i18n-en={d.resultEn}>{d.resultRu}</td>
+        </tr>
+        {d.website && (
+          <tr>
+            <td class="label" data-i18n-ru="Вебсайт" data-i18n-en="Website"></td>
+            <td class="value"><a href={`https://${d.website}`} target="_blank">{d.website}</a></td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+
+    <div class="case-body">
+      <Content />
+    </div>
+
+  </div>
+</Layout>

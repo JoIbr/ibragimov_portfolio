@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/page-section.css";
+---
+
+<Layout titleRu="Контакты | Portfolio" titleEn="Contacts | Portfolio">
+	<section class="section">
+		<div class="socials">
+			<p id="social" data-i18n-ru="Социальные сети" data-i18n-en="Socials"></p>
+			<table class="contacts-table">
+				<tbody>
+				  <tr>
+					<td class="contact-name">Telegram</td>
+					<td class="contact-mail">
+						<a href="mailto:javohirbr@gmail.com">
+						  <span data-i18n-ru="Перейти (@javaibr)" data-i18n-en="Write (@javaibr)"></span> →
+						</a>
+					  </td>
+				  </tr>
+				  <tr>
+					<td class="contact-name">LinkedIn</td>
+					<td class="contact-mail">
+						<a href="mailto:javohirbr@gmail.com">
+						  <span data-i18n-ru="Перейти" data-i18n-en="Write"></span> →
+						</a>
+					  </td>
+				  </tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="mail">
+			<p id="mail" data-i18n-ru="EMAIL" data-i18n-en="EMAIL"></p>
+			<table class="contacts-table">
+				<tbody>
+				  <tr>
+					<td class="contact-name">javohiribr@gmail.com</td>
+					<td class="contact-mail">
+						<a href="mailto:javohirbr@gmail.com">
+						  <span data-i18n-ru="Написать" data-i18n-en="Write"></span> →
+						</a>
+					  </td>
+				  </tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</Layout>

@@ -89,6 +89,12 @@ const tabs = [
 					el.textContent = safeLang === "ru" ? el.dataset.i18nRu : el.dataset.i18nEn;
 				});
 
+				const ruBlocks = document.querySelectorAll(".lang-ru");
+				const enBlocks = document.querySelectorAll(".lang-en");
+
+				ruBlocks.forEach(el => el.style.display = safeLang === "ru" ? "" : "none");
+				enBlocks.forEach(el => el.style.display = safeLang === "en" ? "" : "none");
+
 				const toggle = document.getElementById("lang-toggle");
 				if (toggle) toggle.textContent = safeLang === "ru" ? "РУС" : "ENG";
 			}

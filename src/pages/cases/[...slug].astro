@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import "../../styles/case.css"
+import { projects } from "../../data/projects.ts";
 
 export async function getStaticPaths() {
   const cases = await getCollection("cases");
@@ -19,6 +20,11 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
+
+const currentSlug = entry.id.replace(/\.mdx$/, "");
+const otherCases = projects
+  .filter(p => p.slug && p.slug !== currentSlug)
+  .slice(0, 3);
 ---
 
 <Layout titleRu={d.titleRu} titleEn={d.titleEn} showBack={true}>
@@ -33,7 +39,9 @@ const d = entry.data;
       <tbody>
         <tr>
           <td class="label" data-i18n-ru="Клиент" data-i18n-en="Client"></td>
-          <td class="value" data-i18n-ru={d.clientRu} data-i18n-en={d.clientEn}>{d.clientRu}</td>
+          <td class="value">
+            <img src="/logos/comnet.svg" alt="Comnet" class="company-logo" />
+          </td>
         </tr>
         <tr>
           <td class="label" data-i18n-ru="Когда было сделано" data-i18n-en="Duration"></td>
@@ -60,5 +68,21 @@ const d = entry.data;
       <Content />
     </div>
 
+    {otherCases.length > 0 && (
+      <div class="more-cases">
+        <h3 data-i18n-ru="Ещё кейсы" data-i18n-en="More cases">Ещё кейсы</h3>
+        <div class="more-cases-grid">
+          {otherCases.map(p => (
+            <a href={`/cases/${p.slug}`} class="card">
+              <div class="thumb">
+                {p.cover && <img src={p.cover} alt={p.titleRu} />}
+              </div>
+              <h4 data-i18n-ru={p.titleRu} data-i18n-en={p.titleEn}>{p.titleRu}</h4>
+              <p data-i18n-ru={p.descriptionRu} data-i18n-en={p.descriptionEn}>{p.descriptionRu}</p>
+            </a>
+          ))}
+        </div>
+      </div>)
+    }
   </div>
 </Layout>

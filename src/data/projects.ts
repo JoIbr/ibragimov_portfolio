@@ -12,8 +12,8 @@ export const projects = [
 		titleEn: "TVCOM App",
 		descriptionRu: "Полный редизайн мобильного приложения.",
 		descriptionEn: "Complete redesign of the mobile app.",
-		slug: null,
-		cover: null
+		slug: "tvcom_app",
+		cover: "/images/cases/tvcom/cover-tvcom-app.webp"
 	},
 	{
 		titleRu: "Comnet Deposit Logic",
@@ -22,29 +22,5 @@ export const projects = [
 		descriptionEn: "Convenient card top-ups to boost lead generation.",
 		slug: "comnet_deposit_logic",
 		cover: "/images/cases/comnet/cover-comnet-logic.webp"
-	},
-	{
-		titleRu: "Кейс #4",
-		titleEn: "Case #4",
-		descriptionRu: "Описание проекта скоро будет добавлено.",
-		descriptionEn: "Project description will be added soon.",
-		slug: null,
-		cover: null
-	},
-	{
-		titleRu: "Кейс #5",
-		titleEn: "Case #5",
-		descriptionRu: "Описание проекта скоро будет добавлено.",
-		descriptionEn: "Project description will be added soon.",
-		slug: null,
-		cover: null
-	},
-	{
-		titleRu: "Кейс #6",
-		titleEn: "Case #6",
-		descriptionRu: "Описание проекта скоро будет добавлено.",
-		descriptionEn: "Project description will be added soon.",
-		slug: null,
-		cover: null
 	},
 ];

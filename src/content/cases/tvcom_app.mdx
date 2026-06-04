@@ -14,11 +14,72 @@ cover: "/images/cases/tvcom/tvcom-app-cover.webp"
 order: 3
 ---
 
+<style>{`
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .screen-card {
+    background-color:rgb(245, 245, 245);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .screen-card img {
+    width: 24px;
+    height: 24px;
+    color: #EF233C;
+    flex-shrink: 0;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+
+  .screen-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #screen-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  #screen-card-desc {
+    font-size: 13px;
+    color: #000;
+    opacity: 0.6;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .screens-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .screens-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+`}</style>
+
 <div class="lang-ru">
 
 ## Описание
 
-
+TVCOM — узбекский стриминговый сервис с онлайн-кинотеатром и телевидением в одном приложении. Пользователи смотрят фильмы, сериалы, мультфильмы и прямые трансляции телеканалов на мобильных устройствах. Продукт конкурирует с международными стриминговыми платформами, поэтому уровень дизайна должен соответствовать рынку.
 
 </div>
 
@@ -26,11 +87,135 @@ order: 3
 
 ## Description
 
+TVCOM is an Uzbek streaming service that combines an online cinema and live TV in a single mobile app. Users watch movies, series, cartoons, and live broadcasts on their phones. The product competes with international streaming platforms, so the design needed to match market expectations.
 
+</div>
+
+<div class="lang-ru">
+
+## Проблема
+
+Существующее приложение работало, но выглядело и ощущалось устаревшим. Навигация была непоследовательной, поиск и фильтрация контента — неудобными, а видеоплеер не давал пользователю нужного контроля. Раздел «Моё» с избранным и загрузками не имел чёткой структуры. При этом TVCOM предлагал богатый контент — фильмы в 4K, несколько кинотеатров, ТВ-каналы — но интерфейс не помогал пользователю в этом ориентироваться.
+
+</div>
+
+<div class="lang-en">
+
+## Problem
+
+The app worked, but it looked and felt outdated. Navigation was inconsistent, search and content filtering were clunky, and the video player gave users little control. The "My" section — with favorites and downloads — lacked clear structure. TVCOM offered rich content: 4K movies, multiple cinema partners, live TV channels — but the interface didn't help users navigate any of it.
 
 </div>
 
 <img src="/images/cases/tvcom/1.webp" alt="main, register, tvchannels" />
+
+<div class="lang-ru">
+
+## Исследование
+
+Я изучил, как устроены интерфейсы ведущих стриминговых сервисов: как они строят навигацию, показывают каталог, управляют подписками и фильтрами. Параллельно работал в тесной связке с командой разработки, чтобы дизайн учитывал технические ограничения и возможности платформы. Вместе мы определили приоритеты: что переработать в первую очередь, чтобы это почувствовали пользователи.
+
+</div>
+
+<div class="lang-en">
+
+## Research
+
+I studied how leading streaming services structure their interfaces — navigation patterns, catalog layouts, subscription flows, and filtering. At the same time, I worked closely with the development team to make sure the design accounted for technical constraints and platform capabilities. Together we prioritized what to redesign first to create the most noticeable impact for users.
+
+</div>
+
+<img src="/images/cases/tvcom/5.webp" alt="player" />
+
+<div class="lang-ru">
+
+## Решение
+
+Я переработал весь пользовательский путь — от входа в приложение до просмотра контента. Каждый раздел получил понятную структуру и логику взаимодействия.
+
+</div>
+
+<div class="lang-en">
+
+## Solution
+
+I redesigned the entire user journey — from signing in to watching content. Every section got a clear structure and interaction logic.
+
+</div>
+
+<div class="screens-grid">
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">Вход и регистрация</p>
+            <p id="screen-card-title" class="lang-en">Sign in & registration</p>
+            <p id="screen-card-desc" class="lang-ru">Авторизация по номеру телефона с активацией промокода</p>
+            <p id="screen-card-desc" class="lang-en">Phone number auth with promo code activation</p>
+        </div>
+    </div>
+
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">Главная</p>
+            <p id="screen-card-title" class="lang-en">Home screen</p>
+            <p id="screen-card-desc" class="lang-ru">Кинотеатры, тренды, подборки — всё на одном экране</p>
+            <p id="screen-card-desc" class="lang-en">Cinemas, trending, and curated collections in one place</p>
+        </div>
+    </div>
+
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">ТВ-каналы</p>
+            <p id="screen-card-title" class="lang-en">TV channels</p>
+            <p id="screen-card-desc" class="lang-ru">Список и сетка каналов с текущей программой и избранным</p>
+            <p id="screen-card-desc" class="lang-en">List and grid views with current program and favorites</p>
+        </div>
+    </div>
+
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">Поиск и фильтры</p>
+            <p id="screen-card-title" class="lang-en">Search & filters</p>
+            <p id="screen-card-desc" class="lang-ru">Фильтрация по качеству, жанру, стране, подписке и кинотеатру</p>
+            <p id="screen-card-desc" class="lang-en">Filter by quality, genre, country, subscription, and cinema</p>
+        </div>
+    </div>
+
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">Видеоплеер</p>
+            <p id="screen-card-title" class="lang-en">Video player</p>
+            <p id="screen-card-desc" class="lang-ru">Управление аудио, 4K, блокировка экрана, следующая серия</p>
+            <p id="screen-card-desc" class="lang-en">Audio control, 4K toggle, screen lock, next episode</p>
+        </div>
+    </div>
+
+    <div class="screen-card">
+        <div class="screen-card-body">
+            <p id="screen-card-title" class="lang-ru">Раздел «Моё»</p>
+            <p id="screen-card-title" class="lang-en">My section</p>
+            <p id="screen-card-desc" class="lang-ru">Избранное, история просмотра и управление загрузками</p>
+            <p id="screen-card-desc" class="lang-en">Favorites, watch history, and download management</p>
+        </div>
+    </div>
+</div>
+
 <img src="/images/cases/tvcom/2.webp" alt="search and filters" />
-<img src="/images/cases/tvcom/3.webp" alt="player" />
+
+<div class="lang-ru">
+
+    ## Результат
+
+    Редизайн был реализован и приложение вышло в релиз. Пользователи получили современный интерфейс, в котором удобно искать и смотреть контент, управлять загрузками и переключаться между телеканалами. Дизайн выдержан в едином стиле бренда и масштабируется под оба продукта — iOS и Android.
+
+</div>
+
+<div class="lang-en">
+
+    ## Result
+
+    The redesign was implemented and the app shipped to users. People got a modern interface that makes it easy to browse and watch content, manage downloads, and switch between TV channels. The design is consistent with the brand identity and scales across both iOS and Android.
+
+</div>
+
+<img src="/images/cases/tvcom/3.webp" alt="favourites" />
 <img src="/images/cases/tvcom/4.webp" alt="favourites" />

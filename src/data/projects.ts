@@ -23,4 +23,12 @@ export const projects = [
 		slug: "comnet_deposit_logic",
 		cover: "/images/cases/comnet/cover-comnet-logic.webp"
 	},
+	{
+		titleRu: "Lume Admin System",
+		titleEn: "Lume Admin System",
+		descriptionRu: "Административная CRM-система для управления торговлей и операционными процессами в розничных и продуктовых магазинах.",
+		descriptionEn: "Administrative CRM system for managing retail operations and sales processes in retail and grocery stores.",
+		slug: null,
+		cover: "/images/cases/lume/cover-lume-admin.webp"
+	},
 ];

@@ -20,7 +20,6 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
-console.log("logo:", d.logo); 
 
 const currentSlug = entry.id.replace(/\.mdx$/, "");
 const otherCases = projects

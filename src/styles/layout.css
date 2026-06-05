@@ -66,6 +66,12 @@ body {
   line-height: 1.04;
 }
 
+.sidebar h1 img {
+  width: 0.9em;
+  height: 0.9em;
+  display: inline-block;
+}
+
 .sidebar-content {
   display: flex;
   flex-direction: column;

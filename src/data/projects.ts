@@ -22,13 +22,13 @@ export const projects = [
 		descriptionEn: "Convenient card top-ups to boost lead generation.",
 		slug: "comnet_deposit_logic",
 		cover: "/images/cases/comnet/cover-comnet-logic.webp"
-	}
-	// {
-	// 	titleRu: "Lume Admin System",
-	// 	titleEn: "Lume Admin System",
-	// 	descriptionRu: "Административная CRM-система для управления торговлей и операционными процессами в розничных и продуктовых магазинах.",
-	// 	descriptionEn: "Administrative CRM system for managing retail operations and sales processes in retail and grocery stores.",
-	// 	slug: "lume-admin",
-	// 	cover: "/images/cases/lume/cover-lume-admin.webp"
-	// },
+	},
+	{
+		titleRu: "Lume Admin System & POS",
+		titleEn: "Lume Admin System & POS",
+		descriptionRu: "Административная CRM-система для управления торговлей и операционными процессами в розничных и продуктовых магазинах.",
+		descriptionEn: "Administrative CRM system for managing retail operations and sales processes in retail and grocery stores.",
+		slug: "lume-admin",
+		cover: "/images/cases/lume/cover-lume-admin.webp"
+	},
 ];

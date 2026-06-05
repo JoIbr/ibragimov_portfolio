@@ -20,6 +20,7 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
+console.log("logo:", d.logo); 
 
 const currentSlug = entry.id.replace(/\.mdx$/, "");
 const otherCases = projects
@@ -39,7 +40,12 @@ const otherCases = projects
       <tbody>
         <tr>
           <td class="label" data-i18n-ru="Клиент" data-i18n-en="Client"></td>
-          <td class="value"data-i18n-ru={d.clientRu} data-i18n-en={d.clientEn}></td>
+          <td class="value">
+            {d.logo 
+              ? <img src={d.logo} alt={d.clientRu} class="company-logo" />
+              : <span data-i18n-ru={d.clientRu} data-i18n-en={d.clientEn}>{d.clientRu}</span>
+            }
+          </td>
         </tr>
         <tr>
           <td class="label" data-i18n-ru="Когда было сделано" data-i18n-en="Duration"></td>

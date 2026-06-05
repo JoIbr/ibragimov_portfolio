@@ -4,6 +4,7 @@ import { glob } from "astro/loaders";
 const cases = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/content/cases" }),
   schema: z.object({
+    logo: z.string().optional(),
     titleRu: z.string(),
     titleEn: z.string(),
     clientRu: z.string(),

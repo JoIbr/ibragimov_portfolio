@@ -35,8 +35,12 @@
   color: #0f0f0f;
 }
 
-html {
-  overflow-y: scroll;
+/* Prevents layout shift from scrollbar appearing on desktop only.
+   On iOS Safari, overflow-y on html breaks position: fixed. */
+@media (min-width: 1001px) {
+  html {
+    overflow-y: scroll;
+  }
 }
 
 * {
@@ -155,15 +159,140 @@ main {
   min-height: calc(100vh - 74px);
 }
 
+/* ─── Mobile nav & header lang (hidden on desktop) ─── */
+
+.mobile-nav {
+  display: none;
+}
+
+.sidebar-lang {
+  display: none;
+}
+
+/* ─── Tablet & mobile breakpoint ─── */
+
 @media (max-width: 1000px) {
+  /* Sidebar → fixed top header */
   .sidebar {
-    position: static;
-    width: auto;
-    margin: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    z-index: 99;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid #ebebeb;
+    transition: transform 0.3s ease;
   }
 
+  .sidebar.header-hidden {
+    transform: translateY(-100%);
+  }
+
+  .sidebar h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .sidebar-content {
+    gap: 0;
+  }
+
+  .sidebar-content-item,
+  .contact-link {
+    display: none;
+  }
+
+  /* Lang button in mobile header */
+  .sidebar-lang {
+    display: block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid #dedede;
+    background: #f8f8f8;
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .sidebar-lang:hover {
+    border-color: #000;
+  }
+
+  /* Content shell — top padding clears the fixed header (~50px) */
   .content-shell {
     margin-left: 0;
-    padding-top: 0;
+    margin-top: 0;
+    padding: 16px 20px;
+    padding-top: 66px;
+  }
+
+  /* Hide desktop tabs */
+  .tabs {
+    display: none;
+  }
+
+  /* Space for fixed bottom nav */
+  main {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+
+  /* Bottom navbar */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border-top: 1px solid #ebebeb;
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    gap: 6px;
+    align-items: center;
+  }
+
+  .mobile-tab {
+    flex: 1;
+    text-align: center;
+    padding: 11px 4px;
+    border-radius: 99px;
+    text-decoration: none;
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .mobile-tab.active {
+    color: #111;
+    background: #f2f2f2;
+  }
+
+  .mobile-tab:hover {
+    color: #111;
+    background: #f2f2f2;
+  }
+
+  /* Back button — slightly bolder look */
+  .mobile-back {
+    background-color: #111;
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-shell {
+    padding: 14px 16px;
+    padding-top: 66px;
   }
 }

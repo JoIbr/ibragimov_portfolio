@@ -95,3 +95,15 @@ a.card h3 {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .info-tooltip {
+    padding: 14px;
+    border-radius: 14px;
+    gap: 8px;
+  }
+
+  .info-title {
+    font-size: 14px;
+  }
+}

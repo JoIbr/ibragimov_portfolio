@@ -6,7 +6,6 @@ import { projects } from "../../data/projects.ts";
 
 export async function getStaticPaths() {
   const cases = await getCollection("cases");
-  console.log(cases.map((e) => e.id));
   return cases.map((entry) => ({
     params: { slug: entry.id.replace(/\.mdx$/, "") },
     props: { entry },

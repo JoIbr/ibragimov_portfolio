@@ -10,6 +10,7 @@ interface Props {
 
 const { titleRu = "Портфолио", titleEn = "Portfolio", showBack = false } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCasePage = pathname.startsWith("/cases");
 
 const tabs = [
 	{ href: "/", ru: "Кейсы", en: "Cases" },
@@ -22,7 +23,7 @@ const tabs = [
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, viewport-fit=cover" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -36,7 +37,6 @@ const tabs = [
 			<div class="sidebar-content">
 				<h1>
 					<a href="/" style="all: unset; cursor: pointer">Ibragimov Javohir</a>
-					<!-- <img src="./icons/voltage.svg" alt="my-fastest-smile"> -->
 				</h1>
 				<div class="sidebar-content-item">
 					<p class="subtitle" data-i18n-ru="Выполненные продуктовые кейсы" data-i18n-en="Completed product cases">
@@ -48,21 +48,21 @@ const tabs = [
 			<a class="contact-link" href="/contact" data-i18n-ru="Связаться со мной →" data-i18n-en="Contact me →">
 				Связаться со мной →
 			</a>
+			<button id="mobile-header-lang" class="sidebar-lang" type="button">РУС</button>
 		</aside>
 
 		<div class="content-shell">
 			<header class="tabs">
 				{showBack ? (
 					<a href="/" class="back-btn">
-      					← <span data-i18n-ru="Назад" data-i18n-en="Back">Назад</span>
-    				</a>
+    					← <span data-i18n-ru="Назад" data-i18n-en="Back">Назад</span>
+  					</a>
 				) : (
-					<a 
-					
+					<a
 					class={`tab ${pathname === "/" ? "active" : ""}`}
-					href = "/"
-					data-i18n-ru = "Кейсы"
-					data-i18n-en = "Cases">	
+					href="/"
+					data-i18n-ru="Кейсы"
+					data-i18n-en="Cases">
 					</a>
 				)}
 				{tabs.slice(1).map((tab) => (
@@ -81,8 +81,37 @@ const tabs = [
 				<slot />
 			</main>
 		</div>
+
+		<nav class="mobile-nav">
+			{showBack ? (
+				<a href="/" class="mobile-tab mobile-back">
+					← <span data-i18n-ru="Назад" data-i18n-en="Back">Назад</span>
+				</a>
+			) : (
+				<a
+					class={`mobile-tab ${pathname === "/" || isCasePage ? "active" : ""}`}
+					href="/"
+					data-i18n-ru="Кейсы"
+					data-i18n-en="Cases"
+				>Кейсы</a>
+			)}
+			<a
+				class={`mobile-tab ${pathname === "/about" ? "active" : ""}`}
+				href="/about"
+				data-i18n-ru="Обо мне"
+				data-i18n-en="About"
+			>Обо мне</a>
+			<a
+				class={`mobile-tab ${pathname === "/contact" ? "active" : ""}`}
+				href="/contact"
+				data-i18n-ru="Контакты"
+				data-i18n-en="Contacts"
+			>Контакты</a>
+		</nav>
+
 		<script is:inline>
 			const LANG_KEY = "site-lang";
+			let _scrollController = null;
 
 			function applyLanguage(lang) {
 				const safeLang = lang === "en" ? "en" : "ru";
@@ -104,6 +133,29 @@ const tabs = [
 
 				const toggle = document.getElementById("lang-toggle");
 				if (toggle) toggle.textContent = safeLang === "ru" ? "РУС" : "ENG";
+
+				const headerLang = document.getElementById("mobile-header-lang");
+				if (headerLang) headerLang.textContent = safeLang === "ru" ? "РУС" : "ENG";
+			}
+
+			function initScroll() {
+				if (_scrollController) _scrollController.abort();
+				_scrollController = new AbortController();
+
+				const sidebar = document.querySelector(".sidebar");
+				if (!sidebar) return;
+
+				let lastY = window.scrollY;
+
+				window.addEventListener("scroll", () => {
+					const currentY = window.scrollY;
+					if (currentY > lastY && currentY > 60) {
+						sidebar.classList.add("header-hidden");
+					} else {
+						sidebar.classList.remove("header-hidden");
+					}
+					lastY = currentY;
+				}, { passive: true, signal: _scrollController.signal });
 			}
 
 			function init() {
@@ -115,6 +167,14 @@ const tabs = [
 					const next = (localStorage.getItem(LANG_KEY) || "ru") === "ru" ? "en" : "ru";
 					applyLanguage(next);
 				});
+
+				const headerLang = document.getElementById("mobile-header-lang");
+				headerLang?.addEventListener("click", () => {
+					const next = (localStorage.getItem(LANG_KEY) || "ru") === "ru" ? "en" : "ru";
+					applyLanguage(next);
+				});
+
+				initScroll();
 			}
 
 			document.addEventListener("astro:page-load", init);

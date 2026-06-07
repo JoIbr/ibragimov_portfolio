@@ -166,8 +166,40 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .case-cover {
+    height: 280px;
+  }
+}
+
 @media (max-width: 760px) {
   .more-cases-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .case-cover {
+    height: 200px;
+    border-radius: 8px;
+  }
+
+  .case-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .case-body h2 {
+    font-size: 20px;
+  }
+
+  .case-body p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .more-cases h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
   }
 }

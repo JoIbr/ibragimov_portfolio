@@ -8,4 +8,8 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   integrations: [mdx()],
   adapter: cloudflare(),
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
 });

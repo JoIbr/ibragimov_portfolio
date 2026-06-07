@@ -6,7 +6,7 @@ import { projects } from "../data/projects.ts";
 
 <Layout titleRu="Кейсы | Portfolio" titleEn="Cases | Portfolio">
 	<section class="info-tooltip">
-		<img src="./icons/info.svg" alt="">
+		<img src="/icons/info.svg" alt="">
 		<h3 class="info-title">
 			<span
 				data-i18n-ru="Это лишь часть моего портфолио."
@@ -25,11 +25,11 @@ import { projects } from "../data/projects.ts";
 		</h3>
 	</section>
 	<section class="grid">
-		{projects.map((project) => (
+		{projects.map((project, i) => (
 			project.slug ? (
 				<a href={`/cases/${project.slug}`} class="card">
 					<div class="thumb">
-					{project.cover && <img src={project.cover} alt={project.titleRu} />}
+					{project.cover && <img src={project.cover} alt={project.titleRu} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />}
 					</div>
 					<h3 data-i18n-ru={project.titleRu} data-i18n-en={project.titleEn}>{project.titleRu}</h3>
 					<p data-i18n-ru={project.descriptionRu} data-i18n-en={project.descriptionEn}>
@@ -39,7 +39,7 @@ import { projects } from "../data/projects.ts";
 			) : (
 				<div class="card">
 					<div class="thumb">
-					{project.cover && <img src={project.cover} alt={project.titleRu} />}
+					{project.cover && <img src={project.cover} alt={project.titleRu} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />}
 					</div>
 					<h3 data-i18n-ru={project.titleRu} data-i18n-en={project.titleEn}>{project.titleRu}</h3>
 					<p data-i18n-ru={project.descriptionRu} data-i18n-en={project.descriptionEn}>

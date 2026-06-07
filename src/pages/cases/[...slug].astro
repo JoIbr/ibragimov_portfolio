@@ -30,7 +30,7 @@ const otherCases = projects
 <Layout titleRu={d.titleRu} titleEn={d.titleEn} showBack={true}>
   <div class="case-page">
     <div class="case-cover">
-      <img src={d.cover} alt={d.titleRu} />
+      <img src={d.cover} alt={d.titleRu} fetchpriority="high" />
     </div>
 
     <h2 class="case-title">{d.titleRu}</h2>
@@ -78,7 +78,7 @@ const otherCases = projects
           {otherCases.map(p => (
             <a href={`/cases/${p.slug}`} class="card">
               <div class="thumb">
-                {p.cover && <img src={p.cover} alt={p.titleRu} />}
+                {p.cover && <img src={p.cover} alt={p.titleRu} loading="lazy" />}
               </div>
               <h4 data-i18n-ru={p.titleRu} data-i18n-en={p.titleEn}>{p.titleRu}</h4>
               <p data-i18n-ru={p.descriptionRu} data-i18n-en={p.descriptionEn}>{p.descriptionRu}</p>

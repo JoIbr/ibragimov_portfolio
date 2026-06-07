@@ -1,5 +1,6 @@
 ---
 import "../styles/layout.css";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	titleRu?: string;
@@ -26,6 +27,9 @@ const tabs = [
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{titleRu}</title>
+		<link rel="preload" href="/fonts/TT-Neoris-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/TT-Neoris-Medium.woff2" as="font" type="font/woff2" crossorigin />
+		<ClientRouter />
 	</head>
 	<body data-title-ru={titleRu} data-title-en={titleEn}>
 		<aside class="sidebar">
@@ -102,14 +106,18 @@ const tabs = [
 				if (toggle) toggle.textContent = safeLang === "ru" ? "РУС" : "ENG";
 			}
 
-			const initialLang = localStorage.getItem(LANG_KEY) || "ru";
-			applyLanguage(initialLang);
+			function init() {
+				const lang = localStorage.getItem(LANG_KEY) || "ru";
+				applyLanguage(lang);
 
-			const toggle = document.getElementById("lang-toggle");
-			toggle?.addEventListener("click", () => {
-				const next = (localStorage.getItem(LANG_KEY) || "ru") === "ru" ? "en" : "ru";
-				applyLanguage(next);
-			});
+				const toggle = document.getElementById("lang-toggle");
+				toggle?.addEventListener("click", () => {
+					const next = (localStorage.getItem(LANG_KEY) || "ru") === "ru" ? "en" : "ru";
+					applyLanguage(next);
+				});
+			}
+
+			document.addEventListener("astro:page-load", init);
 		</script>
 	</body>
 </html>

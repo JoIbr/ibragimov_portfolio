@@ -24,9 +24,20 @@ const currentSlug = entry.id.replace(/\.mdx$/, "");
 const otherCases = projects
   .filter(p => p.slug && p.slug !== currentSlug)
   .slice(0, 3);
+
+const seoTitleRu = `${d.titleRu} — UI/UX кейс | Жавохир Ибрагимов`;
+const seoTitleEn = `${d.titleEn} — UI/UX case study | Javohir Ibragimov`;
 ---
 
-<Layout titleRu={d.titleRu} titleEn={d.titleEn} showBack={true}>
+<Layout
+  titleRu={seoTitleRu}
+  titleEn={seoTitleEn}
+  descriptionRu={d.goalRu}
+  descriptionEn={d.goalEn}
+  image={d.cover}
+  type="article"
+  showBack={true}
+>
   <div class="case-page">
     <div class="case-cover">
       <img src={d.cover} alt={d.titleRu} fetchpriority="high" />

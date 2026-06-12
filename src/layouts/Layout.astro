@@ -1,16 +1,70 @@
 ---
 import "../styles/layout.css";
 import { ClientRouter } from "astro:transitions";
+import { SITE } from "../data/site.ts";
 
 interface Props {
 	titleRu?: string;
 	titleEn?: string;
+	descriptionRu?: string;
+	descriptionEn?: string;
+	image?: string;
+	type?: string;
+	noindex?: boolean;
 	showBack?: boolean;
 }
 
-const { titleRu = "Портфолио", titleEn = "Portfolio", showBack = false } = Astro.props;
+const DEFAULT_DESC_RU =
+	"Портфолио Жавохира Ибрагимова — UI/UX дизайнера из Ташкента. Продуктовые кейсы: CRM, POS-системы, мобильные приложения и веб-интерфейсы.";
+const DEFAULT_DESC_EN =
+	"Portfolio of Javohir Ibragimov — UI/UX designer based in Tashkent. Product case studies: CRM, POS systems, mobile apps and web interfaces.";
+
+const {
+	titleRu = "Жавохир Ибрагимов — UI/UX дизайнер",
+	titleEn = "Javohir Ibragimov — UI/UX Designer",
+	descriptionRu = DEFAULT_DESC_RU,
+	descriptionEn = DEFAULT_DESC_EN,
+	image = SITE.defaultImage,
+	type = "website",
+	noindex = false,
+	showBack = false,
+} = Astro.props;
+
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isCasePage = pathname.startsWith("/cases");
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const ogImage = new URL(image, Astro.site ?? SITE.url).href;
+
+// Structured data so search engines understand who the site is about.
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": `${SITE.url}/#person`,
+			name: SITE.authorName,
+			alternateName: SITE.authorNameRu,
+			jobTitle: SITE.jobTitleEn,
+			url: SITE.url,
+			image: new URL(SITE.photo, SITE.url).href,
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: "Tashkent",
+				addressCountry: "UZ",
+			},
+			sameAs: SITE.sameAs,
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${SITE.url}/#website`,
+			url: SITE.url,
+			name: `${SITE.authorName} — ${SITE.jobTitleEn}`,
+			inLanguage: ["ru", "en"],
+			author: { "@id": `${SITE.url}/#person` },
+		},
+	],
+};
 
 const tabs = [
 	{ href: "/", ru: "Кейсы", en: "Cases" },
@@ -27,12 +81,48 @@ const tabs = [
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="yandex-verification" content="1d319b28641edae4" />
+
 		<title>{titleRu}</title>
+		<meta name="description" content={descriptionRu} />
+		<meta name="author" content={SITE.authorName} />
+		<link rel="canonical" href={canonicalURL} />
+		{noindex
+			? <meta name="robots" content="noindex, nofollow" />
+			: <meta name="robots" content="index, follow, max-image-preview:large" />}
+		<meta name="theme-color" content="#ffffff" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={type} />
+		<meta property="og:site_name" content={SITE.authorName} />
+		<meta property="og:title" content={titleRu} />
+		<meta property="og:description" content={descriptionRu} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:alt" content={titleRu} />
+		<meta property="og:locale" content={SITE.locale} />
+		<meta property="og:locale:alternate" content={SITE.localeAlternate} />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={titleRu} />
+		<meta name="twitter:description" content={descriptionRu} />
+		<meta name="twitter:image" content={ogImage} />
+		{SITE.twitter && <meta name="twitter:creator" content={SITE.twitter} />}
+
 		<link rel="preload" href="/fonts/TT-Neoris-Regular.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/TT-Neoris-Medium.woff2" as="font" type="font/woff2" crossorigin />
+
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
 		<ClientRouter />
 	</head>
-	<body data-title-ru={titleRu} data-title-en={titleEn}>
+	<body
+		data-title-ru={titleRu}
+		data-title-en={titleEn}
+		data-desc-ru={descriptionRu}
+		data-desc-en={descriptionEn}
+	>
 		<aside class="sidebar">
 			<div class="sidebar-content">
 				<h1>
@@ -118,8 +208,13 @@ const tabs = [
 				document.documentElement.lang = safeLang;
 				localStorage.setItem(LANG_KEY, safeLang);
 
-				const title = document.body.dataset[`title${safeLang === "ru" ? "Ru" : "En"}`];
+				const suffix = safeLang === "ru" ? "Ru" : "En";
+				const title = document.body.dataset[`title${suffix}`];
 				if (title) document.title = title;
+
+				const desc = document.body.dataset[`desc${suffix}`];
+				const descMeta = document.querySelector('meta[name="description"]');
+				if (desc && descMeta) descMeta.setAttribute("content", desc);
 
 				document.querySelectorAll("[data-i18n-ru][data-i18n-en]").forEach((el) => {
 					el.textContent = safeLang === "ru" ? el.dataset.i18nRu : el.dataset.i18nEn;

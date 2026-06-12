@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joibragimov.com/sitemap-index.xml

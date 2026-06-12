@@ -16,6 +16,14 @@ export const projects = [
 		cover: "/images/cases/tvcom/cover-tvcom-app.webp"
 	},
 	{
+		titleRu: "Dost Logistics",
+		titleEn: "Dost Logistics",
+		descriptionRu: "Дизайн личного кабинета для немецкой логистики с нуля",
+		descriptionEn: "Designing a user dashboard for a German logistics company from scratch",
+		slug: "dost-logistics",
+		cover: "/images/cases/dost-logistics/dost-logistics.jpg"
+	},
+	{
 		titleRu: "Comnet Colocation Webpage",
 		titleEn: "Comnet Colocation Webpage",
 		descriptionRu: "Повышение эффективности интерфейса и конверсии.",
@@ -30,13 +38,5 @@ export const projects = [
 		descriptionEn: "Convenient card top-ups to boost lead generation.",
 		slug: "comnet_deposit_logic",
 		cover: "/images/cases/comnet/cover-comnet-logic.webp"
-	},
-	{
-		titleRu: "Dost Logistics",
-		titleEn: "Dost Logistics",
-		descriptionRu: "Дизайн личного кабинета для немецкой логистики с нуля",
-		descriptionEn: "Designing a user dashboard for a German logistics company from scratch",
-		slug: "dost-logistics",
-		cover: "/images/cases/dost-logistics/dost-logistics.jpg"
 	},
 ];

@@ -9,7 +9,7 @@ export const SITE = {
 	jobTitleRu: "UI/UX дизайнер",
 	jobTitleEn: "UI/UX Designer",
 	// Default social-share image (1200x630 JPG, works on Telegram/LinkedIn/etc.).
-	defaultImage: "/images/og/lume-admin-og.jpg",
+	defaultImage: "/images/og/og.jpg",
 	// Personal photo — used in Person structured data.
 	photo: "/images/my-photo.jpg",
 	locale: "ru_RU",

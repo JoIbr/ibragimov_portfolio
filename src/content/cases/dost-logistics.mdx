@@ -1,0 +1,140 @@
+---
+titleRu: "Dost Logistics"
+titleEn: "Dost Logistics"
+clientRu: "Dost Logistics"
+clientEn: "Dost Logistics"
+durationRu: "2024"
+durationEn: "2024"
+goalRu: "Дизайн личного кабинета с нуля для перевода всего процесса заказа международной доставки из Telegram в полноценный веб-продукт."
+goalEn: "Design of a customer account from scratch to move the entire international delivery ordering process from Telegram into a full web product."
+resultRu: "Спроектирован полный пользовательский путь: от регистрации до отслеживания посылки. Дизайн передан команде клиента для разработки."
+resultEn: "A complete user journey designed — from registration to parcel tracking. The design was handed off to the client's development team."
+cover: "/images/cases/dost-logistics/dost-logistics-cover.webp"
+order: 5
+---
+
+<style>{`
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.5rem 0;
+  }
+  .ba-card {
+    background-color:rgb(248, 248, 248);
+    border: 1px #ebebeb solid;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .ba-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 8px;
+  }
+  .ba-label.before { color: #B91C1C; }
+  .ba-label.after { color: #166534; }
+  .ba-text {
+    font-size: 14px;
+    color: #000;
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .screens-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .screens-grid { grid-template-columns: 1fr; }
+    .ba-grid { grid-template-columns: 1fr; }
+  }
+`}</style>
+
+<div class="lang-ru">
+
+## Описание
+
+Dost Logistics — немецкая логистическая компания, которая доставляет посылки, грузы и интернет-заказы из Германии в Узбекистан. Клиенты компании — жители Узбекистана, заказывающие товары из немецких магазинов. Моя задача — спроектировать личный кабинет, в котором пользователь сам управляет всем процессом: от добавления посылки до отслеживания доставки.
+
+</div>
+
+<div class="lang-en">
+
+## Description
+
+Dost Logistics is a German logistics company that delivers parcels, cargo, and online orders from Germany to Uzbekistan. Its customers are people in Uzbekistan ordering goods from German stores. My task was to design a customer account where users manage the entire process themselves — from adding a parcel to tracking its delivery.
+
+</div>
+
+<div class="lang-ru">
+
+## Проблема
+
+До этого все заказы оформлялись вручную через Telegram: клиент писал менеджеру, отправлял трек-номера, фото и адреса в переписке. Это создавало хаос — заказы терялись в чатах, статус посылки приходилось уточнять у менеджера, не было прозрачности по лимитам и стоимости. С ростом числа клиентов ручная обработка стала узким местом бизнеса.
+
+</div>
+
+<div class="lang-en">
+
+## Problem
+
+Before this, every order was handled manually through Telegram: customers messaged a manager, sending tracking numbers, photos, and addresses in chat. This created chaos — orders got lost in conversations, parcel status had to be requested from the manager, and there was no transparency around limits or costs. As the customer base grew, manual processing became a bottleneck for the business.
+
+</div>
+
+<div class="ba-grid">
+  <div class="ba-card">
+    <p class="ba-label before lang-ru">До</p>
+    <p class="ba-label before lang-en">Before</p>
+    <p class="ba-text lang-ru">Заказы через переписку в Telegram. Статус — по запросу у менеджера. Никакой прозрачности по лимитам и стоимости.</p>
+    <p class="ba-text lang-en">Orders placed through Telegram chats. Status available only by asking a manager. No transparency around limits or costs.</p>
+  </div>
+  <div class="ba-card">
+    <p class="ba-label after lang-ru">После</p>
+    <p class="ba-label after lang-en">After</p>
+    <p class="ba-text lang-ru">Личный кабинет: добавление посылок, отслеживание статусов, получатели, лимиты и расчёт стоимости — всё в одном месте.</p>
+    <p class="ba-text lang-en">A customer account: adding parcels, status tracking, recipients, limits, and cost calculation — all in one place.</p>
+  </div>
+</div>
+
+<img src="/images/cases/dost-logistics/6.webp" alt="About order" />
+<img src="/images/cases/dost-logistics/1.webp" alt="Sign in and registration" />
+
+<div class="lang-ru">
+
+## Решение
+
+Я спроектировал кабинет вокруг реального пути клиента. Дашборд показывает дату следующей отгрузки с обратным отсчётом, адрес склада в Германии и время работы офисов в Ташкенте и Берлине. Добавление посылки — пошаговая форма с трек-номером, списком товаров и автоматическим расчётом стоимости. Каждый заказ имеет наглядный статус-трекер: в ожидании → на складе → отправлено → доставлено. Отдельный раздел получателей позволяет сохранять адреса доставки, а система лимитов отображается прямо в шапке — пользователь всегда видит свой остаток.
+
+</div>
+
+<div class="lang-en">
+
+## Solution
+
+I designed the account around the customer's real journey. The dashboard shows the next shipment date with a countdown, the warehouse address in Germany, and office hours in Tashkent and Berlin. Adding a parcel is a step-by-step form with a tracking number, item list, and automatic cost calculation. Every order has a clear status tracker: pending → at warehouse → shipped → delivered. A dedicated recipients section stores delivery addresses, and the limit system is displayed right in the header — users always see their remaining balance.
+
+</div>
+
+<img src="/images/cases/dost-logistics/3.webp" alt="My parcels with status filters" />
+<img src="/images/cases/dost-logistics/4.webp" alt="Order details with status tracker" />
+
+<div class="lang-ru">
+
+## Результат
+
+Спроектирован полный пользовательский путь: регистрация и вход, дашборд с ключевой информацией о ближайшей отгрузке, управление посылками со статус-трекером, детальная страница заказа со стоимостью товаров и логистики, раздел получателей и настройки профиля с идентификацией. Дизайн передан команде клиента для разработки.
+
+</div>
+
+<div class="lang-en">
+
+## Result
+
+A complete user journey was designed: registration and sign-in, a dashboard with key shipment information, parcel management with a status tracker, a detailed order page with item and logistics costs, a recipients section, and profile settings with identification. The design was handed off to the client's development team.
+
+</div>
+
+<img src="/images/cases/dost-logistics/5.webp" alt="Recipients management" />
+<img src="/images/cases/dost-logistics/7.webp" alt="Profile settings and identification" />

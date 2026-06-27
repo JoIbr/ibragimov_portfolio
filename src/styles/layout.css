@@ -52,6 +52,11 @@ body {
   background: #fff;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .sidebar {
   position: fixed;
   top: 40px;
